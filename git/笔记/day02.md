@@ -15,7 +15,7 @@
         解决冲突 --> 打开冲突的文件 进行修改 add commit 
 
         
-### 后悔药-------------------------（基本跳过reset第一步）
+### 后悔药-------------------------（基本跳过reset第一步，都是在本分支）
     工作区
         如何撤回自己在工作目录中的修改 : git checkout --filename
                             现在改成:git restore filename
@@ -25,18 +25,18 @@
     版本库              
         如何撤回自己的提交    : git commit --amend
             1.注释写错了,重新给用户一次机会改注释
-            2.可以重新添加暂存区文件在覆盖提交，看起来像撤回
+            2.修改的没提交，可以重新添加暂存区文件在覆盖提交，看起来像撤回
         
-### reset
+### reset（除了HEAD，还可以指定别的hash值）
     git log    :  
-    git reflog : 主要是HEAD有变化 那么git reflog机会记录下来
+    git reflog : 只要HEAD有变化 那么git reflog机会记录下来
     三部曲
-        第一部： git reset --soft HEAD~       (类似后悔药的amend)  
+        第一部： git reset --soft HEAD~   回到上一个提交对象    (类似后悔药的amend)  
             只动HEAD (带着分支一起移动)      
         第二部: git reset [--mixed]   HEAD~   (老版本后悔药中的动暂存区)
             动HEAD   (带着分支一起移动)  
             动了暂存区
-        第三部:  git reset --hard  HEAD~      (老版本后悔药，恢复工作区)
+        第三部:  git reset --hard  HEAD~      (老版本后悔药，恢复工作区 和切换分支)
              动HEAD   (带着分支一起移动)  
              动了暂存区
              动了工作目录
