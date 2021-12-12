@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  html{
+    height: 500%;
+  }
+</style>
+<body>
+  <button id="btn">点我</button>
+  <script type='text/javascript'>
+    function throttle(fn, delay) {
+      let lastTime = 0
+      return function () {
+        let newTime = Date.now()
+        if (newTime - lastTime > delay) {
+          fn.call(this)
+          lastTime = newTime
+        }
+      }
+    }
+
+    // document.onscroll = throttle(function () {
+    //   console.log(`scroll被触发了${Date.now()}`)
+    // }, 500)
+
+    function debounce(fn,delay) {
+      let timer = null
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.apply(this)
+        }, delay);
+      }
+    }
+    document.getElementById('btn').onclick = debounce(function () {
+      console.log(`按钮被触发${Date.now()}`)
+    },500)
+
+  </script>
+</body>
+
+</html>

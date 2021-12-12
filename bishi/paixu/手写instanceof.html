@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type='text/javascript'>
+    function Person(name) {
+      this.name = name;
+    }
+
+    function newInstanceOf(leftObj,rightObj){
+      if(leftObj !== 'object' || rightObj === null) return false
+
+      let leftProto = leftObj._proto_    //[prototype]
+      let rightProto = rightObj.prototype
+
+      while(true){
+        if(leftProto === null) return false 
+        if(leftProto === rightProto) return true
+
+        leftProto = leftObj._proto_ 
+
+
+      }
+
+    }
+
+
+
+  </script>
+
+</body>
+</html>

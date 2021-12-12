@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* left,right和width和margin都设为auto：设置auto值优先级:left>width>margin */
+    html,
+    body {
+      height: 100%;
+    }
+
+    .wrap {
+      height: 100%;
+      width: 100%;
+      border: 1px solid blue;
+      position: relative;
+    }
+
+    .left {
+      /* float: left; */
+      position: absolute;
+      left: 200px;
+      right: 0;
+      /* margin: auto; */
+      height: 100%;
+      background-color: brown;
+    }
+
+    /* .right {
+      height: 100%;
+      margin-left: 300px;
+      background-color: chartreuse;
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</body>
+
+</html>
