@@ -1,3 +1,20 @@
+## vue 是什么
+
+构建用户界面的渐进式 JavaScript 框架
+渐进式：自底向上逐层应用，从一个轻量小巧的核心库逐渐递进到使用各式各样的插件库
+
+# 特点
+
+1.采用组件化模式，提高代码复用率，且然代码更好维护
+2，声明式编码，让编码人员无需直接操作 DOM，提高开发效率  
+3.使用虚拟 DOM+优秀的 Diff 算法，尽可能复用 DOM 节点
+
+## 项目结构
+
+public 文件夹：一般放置一些静态资源，webpack 进行打包时候会原封不动的打包到 dist 文件夹中，代理服务器根目录
+
+src 文件夹下的 assets：一般放置多个组件共用的静态资源，webpack 打包时会将静态资源当作一个模块打包在 js 文件里
+
 ## v-if 和 v-show
 
 都是条件渲染，动态显示 dom 元素
@@ -19,8 +36,8 @@ v-if 有更高的切换消耗；v-show 有更高的初始渲染消耗
 ## vuex
 
 安装 store --------const store = new Vuex.Store() {store}
-actions-用于响应数组中的动作 this.$storedispatch
-mutations-用户操作数据       this.$store.commit
+actions-用于响应数组中的动作 this.$storedispatch 可以包含异步操作
+mutations-用户操作数据       this.$store.commit 必须是同步函数
 state-用于存储数据 this.$store.state
 getters-用于将 state 中的数据进行加工    this.$store.getters
 
@@ -58,3 +75,5 @@ beforeDestroy：关闭定时器，取消订阅消息，解绑自定义事件
 路由是一组 key-value 的对应关系
 
 多个路由需要经过路由器管理
+
+路由懒加载：把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
