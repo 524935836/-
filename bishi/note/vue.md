@@ -98,3 +98,9 @@ props：三种方法
 ## nextTick
 
 在下次 DOM 更新 循环结束之后 执行延迟回调。在修改数据之后(可以在 watch 使用 nextTick 得到 v-for 遍历的数据) 立即使用这个方法，获取更新后的 DOM。
+
+## $props $attrs $listeners
+
+包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建高级别的组件时非常有用。
+
+包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on="$listeners" 传入内部组件——在创建更高层次的组件时非常有用。
