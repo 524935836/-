@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="login">登录</button>
+  <script type='text/javascript'>
+    function getSingle(fn) {
+      let res
+      return function (...args) {
+        // 只执行一次fn
+        return res || (res = fn.apply(this, args))
+      }
+    }
+
+    function createLogin() {
+      const div = document.createElement('div')
+      div.innerHTML = '我是登录弹窗'
+      div.style.display = 'none'
+      document.body.appendChild(div)
+      return div
+    }
+    // 返回一个单例
+    const create = getSingle(createLogin)
+    document.getElementById('login').onclick = function () {
+      // 第一次创建，执行多次也返回同一个
+      const login = create()
+      // 修改div
+      login.style.display = 'block'
+    }
+  </script>
+</body>
+</html>
