@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.9.0/lodash.min.js"></script> -->
+</head>
+<body>
+  <button id="btn">按钮</button>
+  <script type='text/javascript'>
+    function throttle(fn, wait, options = {}) {
+      let timer1,timer2, res
+      const throttled = function (...args) {
+        // 第一次立即触发和最后一次也触发
+        if(timer2 && options.trailing && options.leading) {
+            clearTimeout(timer2)
+            timer2 = null
+        }
+        // 第一次立即触发，随后间隔时间触发
+        if(!timer1 && options.leading) {
+          timer1 = setTimeout(() => {
+            timer1 = null
+          }, wait)
+          res = fn.apply(this, args)
+          console.log(22222)
+        }
+        // 间隔时间触发,最后一次也触发
+        if(!timer2 && options.trailing) {
+          timer2 = setTimeout(() => {
+            timer2 = null
+            res = fn.apply(this, args)
+            console.log(3333)
+          }, wait)
+        }
+        return res
+      }
+      return throttled
+    }
+
+    const btn = document.querySelector('#btn')
+
+    function a() {
+      console.log(111)
+    }
+    btn.onclick = throttle(a, 2000, { leading: true, trailing: true })
+    // btn.onclick = _.throttle(a, 3000, true, { leading: true, trailing: true })
+  </script>
+</body>
+</html>
