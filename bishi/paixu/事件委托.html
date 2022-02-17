@@ -5,8 +5,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .div1 {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(38, 0, 255);
+    }
+    .div2 {
+      width: 100px;
+      height: 100px;
+      background-color: yellow;
+    }
+    .div3 {
+      width: 50px;
+      height: 50px;
+      background-color: rgb(255, 0, 98);
+    }
+  </style>
 </head>
 <body>
+  <div class="div1">
+    <div class="div2">
+      <div class="div3">
+      </div>
+    </div>
+  </div>
+
   <ul></ul>
   <script type='text/javascript'>
     // window.onload = function () {
@@ -24,8 +48,11 @@
       
     // }
     
-   
-
+    const div1 = document.querySelector('.div1')
+    div1.addEventListener('click', function (event) {
+      console.log(event.target.className)
+    })
+    
   </script>
 </body>
 </html>

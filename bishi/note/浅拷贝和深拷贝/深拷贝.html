@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type='text/javascript'>
+    const obj = {
+      a: { c: 2, d: null, e: /d/ },
+    }
+    obj.b = obj
+
+    function forEach(arr, fn) {
+      let index = -1
+      while(++index < arr.length) {
+        fn(arr[index], index)
+      }
+    }
+
+    function deepClone(target,map = new Map()) {
+      if (target === null) return target
+      if (target instanceof RegExp) return new RegExp(target)
+      if (target instanceof Date) return new Date(target)
+      if (typeof target !== "object") return target
+      
+      if(typeof target === 'object') {
+        const cloneTarget = new target.constructor()
+        if(map.get(target)) {
+          return map.get(target)
+        }
+        map.set(target, cloneTarget)
+        const arrTarget = Array.isArray(target) ? target : Object.keys(target)
+        forEach(arrTarget, (value, key) => {
+          if(!Array.isArray(target)) {
+            key = value
+          }
+          cloneTarget[key] = deepClone(target[key], map)
+        })
+        return cloneTarget
+      } else {
+        return target
+      }
+    }
+
+    const p = deepClone(obj)
+    p.a.c = '6'
+    console.log(p, obj)
+
+  </script>
+</body>
+
+</html>

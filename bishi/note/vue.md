@@ -64,6 +64,9 @@ mapActions 与 mapMutations 使用时，若需要传递参数需要：在模板�
 1.computed 能完成的功能，watch 都可以完成
 2.watch 能完成的功能，computed 不一定能完成，例如：watch 可以进行异步操作
 
+computed是属性访问，而methods是函数调用
+computed带有缓存功能，而methods不是
+
 ## vue 生命周期
 
 created：初始化，数据监测，数据代理
@@ -104,3 +107,6 @@ props：三种方法
 包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建高级别的组件时非常有用。
 
 包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on="$listeners" 传入内部组件——在创建更高层次的组件时非常有用。
+
+## 数据代理
+数据代理：通过一个对象代理对另一个对象的操作

@@ -15,7 +15,9 @@
       const throttled = function (...args) {
         // 第一次立即触发和最后一次也触发
         if(timer2 && options.trailing && options.leading) {
+            // 清空之前计时器
             clearTimeout(timer2)
+            // 最后一次也要触发（清除标号）
             timer2 = null
         }
         // 第一次立即触发，随后间隔时间触发

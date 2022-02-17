@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">点击</button>
+  <script type='text/javascript'>
+    function curry(fn) {
+      let judge = (...args) => {
+        if (args.length == fn.length) return fn(...args)
+        return (...arg) => judge(...args, ...arg)
+      }
+      return judge
+    }
+
+    function add(a, b, c) {
+      return a + b + c
+    }
+    add(1, 2, 3)
+    let addCurry = curry(add)
+
+    const btn = document.querySelector('#btn')
+    btn.onclick = function () {
+      console.log(addCurry(1)(2)(3))
+    }
+    // function curry(fn, ...args) {
+    //   return function (...params) {
+    //     const _args = [...args, ...params]
+    //     if (_args.length >= fn.length) {
+    //       return fn.apply(null, _args)
+    //     } else {
+    //       return curry.call(null, fn, ..._args);
+    //     }
+    //   }
+    // }
+  </script>
+</body>
+
+</html>

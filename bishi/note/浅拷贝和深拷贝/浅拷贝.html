@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type='text/javascript'>
+    const obj = {name: 'zxk'}
+    // obj.prototype.age = '1'
+
+    function forEach(arr, fn) {
+      let index = -1
+      while(++index < arr.length) {
+        fn(arr[index], index)
+      }
+    }
+
+    function shallowClone(source) {
+      const newObj = new source.constructor()
+      // Object.keys(source).forEach((item) => {
+      //   // if(source.hasOwnProperty) {
+      //     newObj[item] = source[item]
+      //   // }
+      // })
+      const arrTarget = Array.isArray(source) ? source : Object.keys(source)
+      forEach(arrTarget, (value, key) => {
+        if(!Array.isArray(source)) {
+          key = value
+        }
+        newObj[key] = source[key]
+      })
+      return newObj
+    }
+
+    const p = shallowClone(obj)
+    console.log(p, obj)
+  </script>
+</body>
+</html>
