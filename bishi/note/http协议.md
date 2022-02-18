@@ -59,6 +59,7 @@ cookie 是服务器产生的保存在客户端的一段文本信息，格式是�
 
 2.token 优势是比 session 更省资源，不需要管理 sessionid
 
+jwt:与token不同点，token存放了用户的基本信息
 ## readystate 是 xhr 对象的属性，表示代理当前所处的状态 0 1 2 3 4
 
 0 未初始化
@@ -86,3 +87,20 @@ const data = await Promise.reject('失败').catch(e => e)
 1.如果抛出异常，新的 promise 变为 rejected  
 2.如果返回的是非 promise 的任意值，新 promise 的结果为 resolve  
 3.如果返回的是另一个新 promise，此 promise 的结果就会成为新 promise 的结果
+
+
+## xss攻击a标签的javescript
+服务器接收url没有做转义，加上了script代码，渲染到了页面上会被执行
+别人的代码插入到自己的网页
+
+通过转义字符串可以防止xss攻击
+对于链接跳转，如a标签，要检验其内容，禁止以javescript开头的链接
+HttpOnly 防止劫取 Cookie
+
+防止浏览器执行恶意代码
+
+反射型 Xss: 恶意 JavaScript 来自网络请求。（有漏动的查询参数后添加恶意的代码，经过服务器返回html）
+存储型 Xss: 恶意 JavaScript 来自数据库。
+基于 Dom: 漏洞存在于前端而不是后端。（通过前端代码获取url，设置html）
+
+通过对输入（和url参数）进行过滤，对输出进行编码（转义），cookies设置http-only
