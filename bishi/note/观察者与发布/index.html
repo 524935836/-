@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="btn1">点击</button>
+  <button class="btn2">清除其中一个</button>
+  <button class="btn3">清除全部</button>
+  <p></p>
+  <script type='text/javascript'>
+    const p = document.querySelector('p')
+    const btn1 = document.querySelector('.btn1')
+    const btn2 = document.querySelector('.btn2')
+    const btn3 = document.querySelector('.btn3')
+    let n = 0
+
+    class PubSub {
+      static event = {}
+      static subscribe(type, fn) {
+        if (!this.event[type]) {
+          this.event[type] = []
+        }
+        this.event[type].push(fn)
+      }
+      static publish(type, ...args) {
+        if (this.event[type]) {
+          this.event[type].forEach(item => item.apply(this, args))
+        }
+      }
+      static unsubscribe(type, fn) {
+        if (this.event[type]) {
+          const fnIndex = this.event[type].indexOf(fn)
+          if (fnIndex !== -1) {
+            this.event[type].splice(fnIndex, 1)
+          }
+        }
+        this.event[type] && this.event[type].length === 0 && delete this.event[type]
+      }
+
+      static unsubscribeAll(type) {
+        this.event[type] && delete this.event[type]
+      }
+    }
+
+    function add(n) {
+      p.innerHTML = n
+    }
+
+    // 订阅
+    PubSub.subscribe('add', add)
+
+    PubSub.subscribe('fn', function () {
+    })
+
+    btn1.onclick = function () {
+      // 发布
+      PubSub.publish('add', ++n)
+      console.log(PubSub.event)
+    }
+
+    btn2.onclick = function () {
+      PubSub.unsubscribe('add', add)
+      console.log(PubSub.event)
+    }
+
+    btn3.onclick = function () {
+      PubSub.unsubscribeAll('add')
+      console.log(PubSub.event)
+    }
+
+  </script>
+</body>
+
+</html>
