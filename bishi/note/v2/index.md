@@ -1,0 +1,1 @@
+observer数据劫持,get添加订阅，set发布消息，dep管理订阅，watch订阅的事件（订阅者），创建watch实例会使get触发，订阅消息。compile解析页面（表达式和指令），在里面创建watch并传递节点

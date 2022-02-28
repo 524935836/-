@@ -13,26 +13,26 @@
   <button id="btn">按钮</button>
   <script type='text/javascript'>
     function throttle(fn, wait, options = {}) {
-      let timer1, timer2, res
+      let timer,res
+      let old = 0
       const throttled = function (...args) {
+        let now = new Date()
         // 第一次立即触发，随后间隔时间触发
-        if (!timer1 && options.leading) {
-          if (timer2) {
-            // 清空之前计时器
-            clearTimeout(timer2)
-            // 最后一次也要触发（清除标号）
-            timer2 = null
+        if (now - old > wait && options.leading) {
+          if (timer) {
+            clearTimeout(timer)
+            timer = null
           }
-          timer1 = setTimeout(() => {
-            timer1 = null
-          }, wait)
+          // 清除最后一次
           res = fn.apply(this, args)
-          console.log(22222)
-        } else if (!timer2 && options.trailing) {
-          timer2 = setTimeout(() => {
-            timer2 = null
+          console.log(33333)
+          old = now
+        } else if (!timer && options.trailing) {
+          timer = setTimeout(() => {
+            old = new Date()
+            timer = null
+            console.log(4444)
             res = fn.apply(this, args)
-            console.log(3333)
           }, wait)
         }
         return res
@@ -45,7 +45,7 @@
     function a() {
       console.log(111)
     }
-    btn.onclick = throttle(a, 2000, { leading: true, trailing: false })
+    btn.onclick = throttle(a, 2000, { leading: false, trailing: true })
     // btn.onclick = _.throttle(a, 3000, true, { leading: true, trailing: true })
   </script>
 </body>

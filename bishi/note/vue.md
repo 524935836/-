@@ -113,3 +113,26 @@ props：三种方法
 
 ## v-text v-html
 v-html可以解析标签
+
+## Objec.defineProperty
+由于 Object.defineProperty 只能对属性进行劫持，需要遍历对象的每个属性，如果属性值也是对象，则需要深度遍历。而 Proxy 直接代理对象，不需要遍历操作。
+
+Object.defineProperty对新增属性需要手动进行Observe。
+
+## reflect
+返回true 或 false，reactive通过使用proxy来实现响应式（数据劫持），reflect操作源对象的数据,
+第三个参数传递this
+
+## ref toRef
+toRef：可以用来为源响应式对象上的某个 property 新创建一个 ref。然后，ref 可以被传递，它会保持对其源 property 的响应式连接。
+
+person = reactive({})
+ref(person.name) 读出了基本类型.打包成了一个新的ref，没有与person建立联系
+toRef(person, 'name') 简化属性
+
+## MVVM模型
+1. M：模型(Model) ：data中的数据
+2. V：视图(View) ：模板代码
+3. VM：视图模型(ViewModel)：Vue实例
+
+实现mvvm主要包含两个方面，数据变化更新视图，视图变化更新数据：

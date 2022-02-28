@@ -52,7 +52,7 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* 图片占位 */
+/* 图片占位,取值为百分比的时候，参照的是父元素的宽度。 */
 .item-box .bg {
   padding-bottom: 100%;
   width: 100%;
