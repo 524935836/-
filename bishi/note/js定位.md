@@ -18,11 +18,12 @@
 
     	scrollHeight
     	scrollWidth
-    		- 获取元素滚动区域的高度和宽度
+    		-一个元素内容高度的度量，包括由于溢出导致的视图中不可见内容。
 
     	scrollTop
     	scrollLeft
-    		- 获取元素垂直和水平滚动条滚动的距离
+    		- 获取元素垂直和水平滚动条滚动的距离(可视区与顶边的距离)
+        元素的内容顶部（卷起来的）到它的视口可见内容（的顶部）的距离的度量。
 
     	判断滚动条是否滚动到底
     		- 垂直滚动条
@@ -31,6 +32,10 @@
     		- 水平滚动
     			scrollWidth - scrollLeft = clientWidth
 
+
+
+      Element.getBoundingClientRect()
+          返回元素的大小及其相对于视口的位置。
 ## 事件属性
 
     	clientX
@@ -44,3 +49,13 @@
 
     	screenX
     		- 提供鼠标在全局（屏幕）中的水平坐标（偏移量）。
+
+## window
+        scrollX  (document.documentElement.scrollTop)
+          回文档/页面水平方向滚动的像素值。
+
+        Window.pageYOffset
+          只读属性pageYOffset是 scrollY 的别名。
+
+        window.innerWidth
+          可视区高度

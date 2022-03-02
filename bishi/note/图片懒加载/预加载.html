@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      width: 100vw;
+      height: 100vh;
+      border-bottom: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <img src="" class="pre" data-src="https://picsum.photos/360/460?random=1">
+    <img src="" class="pre" data-src="https://picsum.photos/360/460?random=2">
+    <img src="" class="pre" data-src="https://picsum.photos/360/460?random=3">
+  </div>
+  <script type='text/javascript'>
+    const images = [...document.querySelectorAll('.pre')]
+
+    function isVisible(image) {
+      const rect = image.getBoundingClientRect()
+      return rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth
+    }
+
+    // 懒加载加预加载下一张
+    function preloading() {
+      if(images.length) {
+        for (let i = 0; i < images.length; i++) {
+          if (isVisible(images[i])) {
+            images[i].src = images[i].dataset.src
+            // 预加载下一张
+            images[i + 1] && (images[i + 1].src = images[i + 1].dataset.src)
+            // 删除一个元素，索引为0
+            images.splice(i, 2)
+            i = i - 2
+          }
+        }
+      }
+    }
+    preloading()
+    window.addEventListener('scroll', preloading)
+  </script>
+</body>
+
+</html>

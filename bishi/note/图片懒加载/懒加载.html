@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    img {
+      width: 100vw;
+      height: 50vw;
+      border-bottom: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img class="loading" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01ccee5cf75dc1a801205e4b392210.gif&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1648740002&t=7b43eea420375f8701bc18eccc556d60" data-src="https://picsum.photos/360/460?random=1">
+    <img class="loading" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01ccee5cf75dc1a801205e4b392210.gif&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1648740002&t=7b43eea420375f8701bc18eccc556d60" data-src="https://picsum.photos/360/460?random=2">
+    <img class="loading" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01ccee5cf75dc1a801205e4b392210.gif&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1648740002&t=7b43eea420375f8701bc18eccc556d60" data-src="https://picsum.photos/360/460?random=3">
+  </div>
+  <script type='text/javascript'>
+    const images = [...document.querySelectorAll('.loading')]
+
+    function isVisible(image) {
+      const rect = image.getBoundingClientRect()
+      return rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth
+    }
+
+    function lazyLoading() {
+      if (images.length) {
+        for (let i = 0; i < images.length; i++) {
+          const image = images[i]
+          console.log(i)
+          if (isVisible(image)) {
+            // 设置图片
+            image.src = image.dataset.src
+            // 移除遍历
+            // 删除一个元素，索引为0
+            images.splice(i, 1)
+            i--
+          }
+        }
+      }
+    }
+    
+    lazyLoading()
+    window.addEventListener('scroll', lazyLoading)
+  </script>
+</body>
+</html>
