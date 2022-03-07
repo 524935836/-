@@ -1,8 +1,10 @@
 ## symbol
 Reflect.ownKeys(obj),返回一个由目标对象自身的属性键组成的数组（包括symbol）
 向对象添加方法
-Symbol.for创建
+## Symbol.for创建
 不能与其他数据进行运算
+
+根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。
 
 Symbol的方法将作为对象的属性
 

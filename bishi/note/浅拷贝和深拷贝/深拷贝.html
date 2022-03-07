@@ -12,8 +12,8 @@
   <script type='text/javascript'>
     const obj = {
       a: { c: 2, d: null, e: /d/ },
+      b: [1, 2]
     }
-    obj.b = obj
 
     function forEach(arr, fn) {
       let index = -1
@@ -48,7 +48,6 @@
     }
 
     const p = deepClone(obj)
-    p.a.c = '6'
     console.log(p, obj)
 
   </script>

@@ -36,11 +36,21 @@ v-if 有更高的切换消耗；v-show 有更高的初始渲染消耗
 ## vuex
 
 安装 store --------const store = new Vuex.Store() {store}
-actions-用于响应数组中的动作 this.$storedispatch 可以包含异步操作
-mutations-用户操作数据       this.$store.commit 必须是同步函数
-state-用于存储数据 this.$store.state
-getters-用于将 state 中的数据进行加工    this.$store.getters
+# actions-用于响应数组中的动作 this.$storedispatch 可以包含异步操作
+Action 提交的是 mutation，而不是直接变更状态。
 
+# mutations-用户操作数据       this.$store.commit 必须是同步函数
+通过调用commmit改变数据
+
+# state-用于存储数据 this.$store.state
+# getters-用于将 state 中的数据进行加工    this.$store.getters
+
+#Module
+Vuex 允许我们将 store 分割成模块（module）。每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块——从上至下进行同样方式的分割：
+
+默认情况下，getter、action、mutation注册在全局，state处于局部状态，
+开启命名空间， getter、action 及 mutation 都会自动根据模块注册的路径调整命名。
+rootState 和 rootGetters可以访问局部，，将 { root: true } 作为第三参数传给 dispatch 或 commit也可以访问局部
 ## mapMutations 用于生成与 mutations 对话的方法，写在 method
 
 让代码更好维护，让多种数据分类更加明确
