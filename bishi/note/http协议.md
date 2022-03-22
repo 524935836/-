@@ -59,7 +59,7 @@ cookie 是服务器产生的保存在客户端的一段文本信息，格式是�
 
 2.token 优势是比 session 更省资源，不需要管理 sessionid
 
-jwt:与token不同点，token存放了用户的基本信息
+jwt:与token不同点，jwt不需要查数据库，它所需要的基础信息可以直接放到jwt里
 ## readystate 是 xhr 对象的属性，表示代理当前所处的状态 0 1 2 3 4
 
 0 未初始化

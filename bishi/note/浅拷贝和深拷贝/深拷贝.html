@@ -11,34 +11,50 @@
 <body>
   <script type='text/javascript'>
     const obj = {
-      a: { c: 2, d: null, e: /d/ },
-      b: [1, 2]
+      a: { c: 2 },
+      b: [1, 2],
     }
+    obj.c = obj
+    // function forEach(arr, fn) {
+    //   let index = -1
+    //   while(++index < arr.length) {
+    //     fn(arr[index], index)
+    //   }
+    // }
 
-    function forEach(arr, fn) {
-      let index = -1
-      while(++index < arr.length) {
-        fn(arr[index], index)
-      }
-    }
-
-    function deepClone(target,map = new Map()) {
-      if (target === null) return target
-      if (target instanceof RegExp) return new RegExp(target)
-      if (target instanceof Date) return new Date(target)
-      if (typeof target !== "object") return target
+    // function deepClone(target,map = new Map()) {
+    //   if (target === null) return target
+    //   if (target instanceof RegExp) return new RegExp(target)
+    //   if (target instanceof Date) return new Date(target)
+    //   if (typeof target !== "object") return target
       
+    //   if(typeof target === 'object') {
+    //     const cloneTarget = new target.constructor()
+    //     if(map.get(target)) {
+    //       return map.get(target)
+    //     }
+    //     map.set(target, cloneTarget)
+    //     const arrTarget = Array.isArray(target) ? target : Object.keys(target)
+    //     forEach(arrTarget, (value, key) => {
+    //       if(!Array.isArray(target)) {
+    //         key = value
+    //       }
+    //       cloneTarget[key] = deepClone(target[key], map)
+    //     })
+    //     return cloneTarget
+    //   } else {
+    //     return target
+    //   }
+    // }
+
+    
+
+    function deepClone(target, map = new Map()) {
       if(typeof target === 'object') {
         const cloneTarget = new target.constructor()
-        if(map.get(target)) {
-          return map.get(target)
-        }
+        if(map.get(target)) return map.get(target)
         map.set(target, cloneTarget)
-        const arrTarget = Array.isArray(target) ? target : Object.keys(target)
-        forEach(arrTarget, (value, key) => {
-          if(!Array.isArray(target)) {
-            key = value
-          }
+        Object.keys(target).forEach(key => {
           cloneTarget[key] = deepClone(target[key], map)
         })
         return cloneTarget

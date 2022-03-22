@@ -15,7 +15,7 @@
 
     let p1 = new Promise((resolve, reject) => {
       setTimeout(() => {
-        reject('err');
+        resolve('111');
       }, 1000)
     })
     let p2 = Promise.resolve('Success');

@@ -7,12 +7,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    
+    html,
+    body {
+      height: 2000px;
+    }
+
+    .nav {
+      
+    }
+    .box1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: fixed;
+      top: 0;
+    }
+    .nav::before {
+      content: '';
+      display: block;
+      height: 100px;
+    }
+
+    .box2 {
+      width: 200px;
+      height: 200px;
+      background-color: yellow;
+    }
+
   </style>
 </head>
 
 <body>
-  
+  <div class="nav">
+    <div class="box1"></div>
+  </div>
+  <div class="box2"></div>
   <script type='text/javascript'>
     // function Observe(data) {
     //   Object.keys(data).forEach(key => {
@@ -28,8 +57,9 @@
     // }
     // const p = Object.create(new Observe({a:3}))
     // console.log(p)
-    
-   
+
+
+
   </script>
 </body>
 
