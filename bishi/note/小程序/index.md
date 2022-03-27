@@ -47,3 +47,20 @@ this.backgroundAudioManager.onWaiting 监听音频加载中事件。当音频因
   通过appid、appsecret(小程序密钥)、code
 4.发送请求给微信服务器获取openid(拼接url,用fly插件发送请求)2
 5.自定义登录态(插件jsonwebtoken，自定义密钥，加密数据库中数据，数据中包含openid)
+
+## 支付流程
+1.小程序客户端发送下单支付请求给商家服务器
+
+2.商家服务器同微信服务器对接获取唯一标识 openID，商家服务器根据 openId 生成商户订单
+
+3.商家服务器发送请求调用统一下单 API 获取预支付订单信息并加密后返回给小程序客户端（prepay_id）
+https://api.mch.weixin.qq.com/pay/unifiedorder
+
+4.小程序发起微信支付（prepay_id），等待支付结果
+调用wx.requestPayment(OBJECT)发起微信支付
+
+5.微信服务器推送支付结果给商家服务器端（自动），是通过【统一下单API】中提交的参数notify_url设置
+
+6.小程序查询支付状态（主动，商家服务器调用查询支付结果）
+https://api.mch.weixin.qq.com/pay/orderquery
+发送给商家服务器，服务器调用上面接口发送给微信服务器

@@ -112,6 +112,7 @@ props：三种方法
 
 在下次 DOM 更新 循环结束之后 执行延迟回调。在修改数据之后(可以在 watch 使用 nextTick 得到 v-for 遍历的数据) 立即使用这个方法，获取更新后的 DOM。
 
+数据变化，页面不能立即更新
 ## $props $attrs $listeners
 
 包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建高级别的组件时非常有用。
@@ -155,3 +156,20 @@ toRef(person, 'name') 简化属性
 把此虚拟DOM转成真实DOM并插入页面中（render）
 如果有事件发生修改了虚拟DOM，比较两棵虚拟DOM树的差异，得到差异对象（diff）
 把差异对象应用到真正的DOM树上（patch）
+
+## 路由
+全局前置守卫(beforeEach) 2
+
+全局解析守卫(beforeResolve) 6
+导航被确认之前，同时在所有组件内守卫和异步路由组件被解析之后，解析守卫就被正确调用。
+
+全局后置钩子(afterEach ) 7
+导航确认之后
+
+路由独享守卫(beforeEnter) 4
+
+组件内守卫
+  beforeRouteEnter 5
+  beforeRouteUpdate(beforeRouteUpdate) 3
+  beforeRouteLeave 1
+
