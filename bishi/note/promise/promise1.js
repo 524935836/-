@@ -4,7 +4,7 @@ export default class Promise {
   callbacks = []
   constructor(executor) {
     let resolve = (data) => {
-      if(this.PromiseStatus !== 'pending') return
+      if (this.PromiseStatus !== 'pending') return
       this.PromiseStatus = 'fulfilled'
       this.PromiseResult = data
       this.callbacks.forEach(item => {
@@ -12,7 +12,7 @@ export default class Promise {
       })
     }
     let reject = (data) => {
-      if(this.PromiseStatus !== 'pending') return
+      if (this.PromiseStatus !== 'pending') return
       this.PromiseStatus = 'reject'
       this.PromiseResult = data
       this.callbacks.forEach(item => {
@@ -27,40 +27,40 @@ export default class Promise {
   }
   then(onresolved = v => v,
     onrejected = e => { throw e }
-    ) {
-      return new Promise((resolve, reject) => {
-        let thenCallback = (type) => {
-          setTimeout(() => {
-            try {
-              let res = type(this.PromiseResult)
-              if(res instanceof Promise) {
-                res.then(resolve, reject)
-              } else {
-                resolve(res)
-              }
-            } catch (e) {
-              reject(e)
+  ) {
+    return new Promise((resolve, reject) => {
+      let thenCallback = (type) => {
+        setTimeout(() => {
+          try {
+            let res = type(this.PromiseResult)
+            if (res instanceof Promise) {
+              res.then(resolve, reject)
+            } else {
+              resolve(res)
             }
-          })
-        }
-        if(this.PromiseStatus === 'fulfilled') {
-          thenCallback(onresolved)
-        }
-        if(this.PromiseStatus === 'reject') {
-          thenCallback(onrejected)
-        }
-        if(this.PromiseStatus === 'pending') {
-          this.callbacks.push({
-            onresolvedCallback() {
-              thenCallback(onresolved)
-            },
-            onrejectedCallback() {
-              thenCallback(onrejected)
-            }
-          })
-        }
-      })
-    }
+          } catch (e) {
+            reject(e)
+          }
+        })
+      }
+      if (this.PromiseStatus === 'fulfilled') {
+        thenCallback(onresolved)
+      }
+      if (this.PromiseStatus === 'reject') {
+        thenCallback(onrejected)
+      }
+      if (this.PromiseStatus === 'pending') {
+        this.callbacks.push({
+          onresolvedCallback() {
+            thenCallback(onresolved)
+          },
+          onrejectedCallback() {
+            thenCallback(onrejected)
+          }
+        })
+      }
+    })
+  }
   catch(e) {
     return this.then(undefined, e)
   }
@@ -91,10 +91,10 @@ export default class Promise {
       }, [])
     })
   }
-  static race(promises) {
+  static race(promise) {
     return new Promise((resolve, reject) => {
-      promises.forEach(item => {
-        item.then(resolve, reject)
+      promise.forEach(promise => {
+        promise.then(resolve, reject)
       })
     })
   }

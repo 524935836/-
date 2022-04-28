@@ -1,0 +1,140 @@
+{
+	// Place your 全局 snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"creat a new funn":{   
+		"prefix": "funn", 
+		"body": [              
+			"function $1($2) {",  //使用\n换行 使用\t缩进
+				"\t$0",
+				"}"
+		],
+		"description": "匿名函数" 
+	},
+
+  "creat a new ()":{   
+		"prefix": "f=", 
+		"body": [              
+			"$1 => $0",  //使用\n换行 使用\t缩进
+
+		],
+		"description": "箭头函数" 
+	},
+
+  "creat a constructor":{   
+		"prefix": "constr", 
+		"body": [              
+			"constructor ($1) {",  //使用\n换行 使用\t缩进
+				"\t$0",
+				"}"
+		],
+		"description": "构造constructor函数" 
+	},
+
+  "creat a new funnd":{   
+		"prefix": "funnd", 
+		"body": [              
+			"function (data) {",  //使用\n换行 使用\t缩进
+				"\t$0",
+				"}"
+		],
+		"description": "jQ_ajax_响应体" 
+	},
+
+	"creat a new cons":{   
+		"prefix": "cons", 
+		"body": [              
+			"console.log($0)" //使用\n换行 使用\t缩进
+		],
+		"description": "输出" 
+	},
+
+	"creat a new if1":{   
+		"prefix": "if1", 
+		"body": [              
+			"if($0){", //使用\n换行 使用\t缩进
+			"\t",
+			"}"
+		],
+		"description": "一重条件" 
+	},
+
+	"creat a new if2":{   
+		"prefix": "if2", 
+		"body": [              
+			"if($1){", //使用\n换行 使用\t缩进
+			"\t$2",
+			"} else($3){",
+			"\t$4",
+			"}"
+		],
+		"description": "二重条件" 
+	},
+
+	"creat a new scr1":{   
+		"prefix": "scr1", 
+		"body": [              
+			"<script type='text/javascript'>", //使用\n换行 使用\t缩进
+			"\t$0",
+			"</script>",
+		],
+		"description": "script结构" 
+	},
+
+	"creat a new scr2":{   
+		"prefix": "scr2", 
+		"body": [              
+			"<script type='text/javascript' src='$0'></script>", //使用\n换行 使用\t缩进
+		],
+		"description": "script结构(引入js)" 
+	},
+
+  "creat a new scr_module":{   
+		"prefix": "scrm", 
+		"body": [              
+			"<script type='module' src='$0'></script>", //使用\n换行 使用\t缩进
+		],
+		"description": "script结构(引入js)" 
+	},
+  
+  "vue1":{   
+		"prefix": "vue1", 
+		"body": [              
+		"<template>",
+      "\t<div>",
+        "",
+      "\t</div>",
+    "</template>",
+        "",
+    "<script>",
+    "export default {",
+      "\tname: '',",
+      "\tdata() {",
+        "\t\treturn {",
+          "",
+        "\t\t}",
+      "\t}",
+    "}",
+    "</script>",
+       "",
+    "<style lang='less' scoped>",
+      "",
+    "</style>", //使用\n换行 使用\t缩进
+		],
+		"description": "vue常用模板" 
+	}
+
+}

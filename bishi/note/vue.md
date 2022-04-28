@@ -173,3 +173,5 @@ toRef(person, 'name') 简化属性
   beforeRouteUpdate(beforeRouteUpdate) 3
   beforeRouteLeave 1
 
+## render
+缺少模板解析器

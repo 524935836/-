@@ -13,3 +13,14 @@
 说明: 只有这 2 种, 且一个 promise 对象只能改变一次
 无论变为成功还是失败, 都会有一个结果数据
 成功的结果数据一般称为 value, 失败的结果数据一般称为 reason
+
+ then/catch 的最后一行返回一个永远 pending 的 promise 即可中断调用链
+
+ return new Promise((resolve, reject) => {})
+
+
+ ## async await
+ async修饰的函数返回promise对象，promise的状态由返回值决定
+
+ await右侧的表达式一般为promise对象，如果表达式为promise，await返回的时promise成功的值，如果表达式是其他值，直接将此值作为await的返回值
+ 如果await的promise失败了，就会抛出错误，需要通过 try...catch 捕获处理

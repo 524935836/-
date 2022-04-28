@@ -61,7 +61,16 @@ cookie 是服务器产生的保存在客户端的一段文本信息，格式是�
 
 jwt:与token不同点，jwt不需要查数据库，它所需要的基础信息可以直接放到jwt里
 ## readystate 是 xhr 对象的属性，表示代理当前所处的状态 0 1 2 3 4
-
+            const x = new XMLHttpRequest();
+            x.open("GET",'/data');
+            x.send();
+            x.onreadystatechange = function(){
+                if(x.readyState === 4){
+                    if(x.status >= 200 && x.status < 300){
+                        console.log(x.response);
+                    }
+                }
+            }
 0 未初始化
 1 表示 open 方法调用完毕
 2 表示 send 方法调用完毕
