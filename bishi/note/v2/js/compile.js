@@ -23,7 +23,7 @@ class Compile {
     while (child) {
       // 将Dom元素移入fragment中
       fragment.appendChild(child)
-      child = el.firstChild
+      child = el.firstChild  //第一个子节点 childNodes子节点集合
     }
     return fragment
   }
