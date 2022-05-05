@@ -1,116 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    html,
-    body {
-      height: 2000px;
-    }
-
-
-    .box1 {
-      width: 100px;
-      height: 100px;
-      background-color: red;
-      position: fixed;
-      top: 0;
-    }
-
-    .nav::before {
-      content: '';
-      display: block;
-      height: 100px;
-    }
-
-    .box2 {
-      width: 200px;
-      height: 200px;
-      background-color: yellow;
-    }
-
-    .div1 {
-      width: 200px;
-      height: 200px;
-      background-color: red;
-    }
-
-    .div2 {
-      text-align: center;
-      line-height: 200px;
-    }
-
-    div {
-      width: 100px;
-      height: 100px;
-      font-size: 15px;
-      line-height: 15px;
-    }
-  </style>
-</head>
-
-<body>
-  <!-- <div class="nav">
-    <div class="box1"></div>
-  </div>
-  <div class="box2"></div> -->
-  <div>1111111111111111
-  </div>
-  <script type='text/javascript'>
-    function isTextOverflow(className, dom = document, extraPixel = 0, isLineMultiple = false) {
-      let flag
-      // origin
-      const originDom = dom.querySelector(className)
-      if (!originDom) return false
-      const originStyle = window.getComputedStyle(originDom)
-      const originFontSize = originStyle.fontSize
-      console.log(originDom.style.fontSize)
-      const originLineHeight = originStyle.lineHeigh
-      const originRect = originDom.getBoundingClientRect()
-      const originWidth = originRect.width
-      const originHeight = originRect.height
-      const cloneDom = document.createElement("div")
-      originDom.childNodes.forEach(node => {
-        // 第三种
-        cloneDom.appendChild(node.cloneNode(true))
-      })
-      if (isLineMultiple) {
-        cloneDom.style.width = originStyle.width
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 2000px;
       }
-      cloneDom.style.lineHeight = originLineHeight
-      cloneDom.style.fontSize = originFontSize
-      cloneDom.style.position = "absolute"
-      cloneDom.style.visibility = "hidden"
-      cloneDom.style.zIndex = -1
-      cloneDom.style.top = 0
-      document.body.appendChild(cloneDom)
-      const cloneRect = cloneDom.getBoundingClientRect()
-      const cloneWidth = cloneRect.width
-      const cloneHeight = cloneRect.height
-      // 判断
-      if (isLineMultiple) {
-        flag = cloneHeight + extraPixel > originHeight
-      } else {
-        flag = cloneWidth + extraPixel > originWidth
-        console.log(cloneWidth, originWidth)
+
+      .box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: fixed;
+        top: 0;
       }
-      document.body.removeChild(cloneDom)
-      // return
-      return flag
-    }
 
-    console.log(isTextOverflow('div', undefined))
+      .nav::before {
+        content: "";
+        display: block;
+        height: 100px;
+      }
 
-    var aFileParts = ['<a id="a"><b id="b">hey!</b></a>']; // 一个包含DOMString的数组
-    var oMyBlob = new Blob(aFileParts, { type: 'text/html' }); // 得到 blob
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+      }
 
-    href = window.URL.createObjectURL('123')
+      .div1 {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
 
-  </script>
-</body>
+      .div2 {
+        text-align: center;
+        line-height: 200px;
+      }
 
+      div {
+        width: 100px;
+        height: 100px;
+        font-size: 15px;
+        line-height: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      function hasClass(el, cls) {
+        if (!el || !cls) return false
+        if (cls.indexOf(" ") !== -1) throw new Error("className should not contain space.")
+        console.log(el.classList)
+        if (el.classList) {
+          return el.classList.contains(cls)
+        } else {
+          console.log(111)
+          return (" " + el.className + " ").indexOf(" " + cls + " ") > -1
+        }
+      }
+
+      /* istanbul ignore next */
+      function addClass(el, cls) {
+        if (!el) return
+        var curClass = el.className
+        var classes = (cls || "").split(" ")
+
+        for (var i = 0, j = classes.length; i < j; i++) {
+          var clsName = classes[i]
+          if (!clsName) continue
+
+          if (el.classList) {
+            el.classList.add(clsName)
+          } else if (!hasClass(el, clsName)) {
+            curClass += " " + clsName
+          }
+        }
+        if (!el.classList) {
+          el.setAttribute("class", curClass)
+        }
+      }
+
+      const div = document.createElement("div")
+      console.log(hasClass(div, "div1"))
+    </script>
+  </body>
 </html>
