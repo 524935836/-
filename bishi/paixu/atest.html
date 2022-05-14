@@ -47,8 +47,9 @@
     div {
       width: 100px;
       height: 100px;
-      font-size: 15px;
-      line-height: 15px;
+      background-color: red;
+      padding: 10px;
+      margin-bottom: 10px
     }
   </style>
 </head>
@@ -61,54 +62,7 @@
   <div>1111111111111111
   </div>
   <script type='text/javascript'>
-    function isTextOverflow(className, dom = document, extraPixel = 0, isLineMultiple = false) {
-      let flag
-      // origin
-      const originDom = dom.querySelector(className)
-      if (!originDom) return false
-      const originStyle = window.getComputedStyle(originDom)
-      const originFontSize = originStyle.fontSize
-      console.log(originDom.style.fontSize)
-      const originLineHeight = originStyle.lineHeigh
-      const originRect = originDom.getBoundingClientRect()
-      const originWidth = originRect.width
-      const originHeight = originRect.height
-      const cloneDom = document.createElement("div")
-      originDom.childNodes.forEach(node => {
-        // 第三种
-        cloneDom.appendChild(node.cloneNode(true))
-      })
-      if (isLineMultiple) {
-        cloneDom.style.width = originStyle.width
-      }
-      cloneDom.style.lineHeight = originLineHeight
-      cloneDom.style.fontSize = originFontSize
-      cloneDom.style.position = "absolute"
-      cloneDom.style.visibility = "hidden"
-      cloneDom.style.zIndex = -1
-      cloneDom.style.top = 0
-      document.body.appendChild(cloneDom)
-      const cloneRect = cloneDom.getBoundingClientRect()
-      const cloneWidth = cloneRect.width
-      const cloneHeight = cloneRect.height
-      // 判断
-      if (isLineMultiple) {
-        flag = cloneHeight + extraPixel > originHeight
-      } else {
-        flag = cloneWidth + extraPixel > originWidth
-        console.log(cloneWidth, originWidth)
-      }
-      document.body.removeChild(cloneDom)
-      // return
-      return flag
-    }
-
-    console.log(isTextOverflow('div', undefined))
-
-    var aFileParts = ['<a id="a"><b id="b">hey!</b></a>']; // 一个包含DOMString的数组
-    var oMyBlob = new Blob(aFileParts, { type: 'text/html' }); // 得到 blob
-
-    href = window.URL.createObjectURL('123')
+    
 
   </script>
 </body>
