@@ -1,70 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 2000px;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    html,
-    body {
-      height: 2000px;
-    }
+      .box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: fixed;
+        top: 0;
+      }
 
+      .nav::before {
+        content: "";
+        display: block;
+        height: 100px;
+      }
 
-    .box1 {
-      width: 100px;
-      height: 100px;
-      background-color: red;
-      position: fixed;
-      top: 0;
-    }
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+      }
 
-    .nav::before {
-      content: '';
-      display: block;
-      height: 100px;
-    }
+      .div1 {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
 
-    .box2 {
-      width: 200px;
-      height: 200px;
-      background-color: yellow;
-    }
+      .div2 {
+        text-align: center;
+        line-height: 200px;
+      }
 
-    .div1 {
-      width: 200px;
-      height: 200px;
-      background-color: red;
-    }
+      div {
+        width: 100px;
+        height: 100px;
+        font-size: 15px;
+        line-height: 15px;
+      }
+    </style>
+  </head>
 
-    .div2 {
-      text-align: center;
-      line-height: 200px;
-    }
+  <body>
+    <script type="text/javascript">
+      function hasClass(el, cls) {
+        if (!el || !cls) return false
+        if (cls.indexOf(" ") !== -1) throw new Error("className should not contain space.")
+        console.log(el.classList)
+        if (el.classList) {
+          return el.classList.contains(cls)
+        } else {
+          console.log(111)
+          return (" " + el.className + " ").indexOf(" " + cls + " ") > -1
+        }
+      }
 
-    div {
-      width: 100px;
-      height: 100px;
-      background-color: red;
-      padding: 10px;
-      margin-bottom: 10px
-    }
-  </style>
-</head>
+      /* istanbul ignore next */
+      function addClass(el, cls) {
+        if (!el) return
+        var curClass = el.className
+        var classes = (cls || "").split(" ")
 
-<body>
-  <!-- <div class="nav">
-    <div class="box1"></div>
-  </div>
-  <div class="box2"></div> -->
-  <div>1111111111111111
-  </div>
-  <script type='text/javascript'>
-    
+        for (var i = 0, j = classes.length; i < j; i++) {
+          var clsName = classes[i]
+          if (!clsName) continue
 
-  </script>
-</body>
+          if (el.classList) {
+            el.classList.add(clsName)
+          } else if (!hasClass(el, clsName)) {
+            curClass += " " + clsName
+          }
+        }
+        if (!el.classList) {
+          el.setAttribute("class", curClass)
+        }
+      }
 
+      const div = document.createElement("div")
+      console.log(hasClass(div, "div1"))
+    </script>
+  </body>
 </html>
